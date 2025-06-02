@@ -7,12 +7,12 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.Observer
 import com.mindorks.bootcamp.instagram.R
+import com.mindorks.bootcamp.instagram.databinding.ActivityLoginBinding
 import com.mindorks.bootcamp.instagram.di.component.ActivityComponent
 import com.mindorks.bootcamp.instagram.ui.base.BaseActivity
 import com.mindorks.bootcamp.instagram.ui.main.MainActivity
 import com.mindorks.bootcamp.instagram.utils.common.Event
 import com.mindorks.bootcamp.instagram.utils.common.Status
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity<LoginViewModel>() {
 
@@ -28,7 +28,7 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
 
     override fun setupView(savedInstanceState: Bundle?) {
 
-        et_email.addTextChangedListener(object : TextWatcher {
+        ActivityLoginBinding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.onEmailChange(s.toString())
             }

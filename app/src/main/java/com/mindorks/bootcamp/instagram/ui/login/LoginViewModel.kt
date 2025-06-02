@@ -21,7 +21,7 @@ class LoginViewModel(
 
     val launchMain: MutableLiveData<Event<Map<String, String>>> = MutableLiveData()
 
-    val email   Field: MutableLiveData<String> = MutableLiveData()
+    val emailField: MutableLiveData<String> = MutableLiveData()
     val passwordField: MutableLiveData<String> = MutableLiveData()
     val loggingIn: MutableLiveData<Boolean> = MutableLiveData()
 

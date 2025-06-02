@@ -1,15 +1,17 @@
 package com.mindorks.bootcamp.instagram.ui.main
 
 import android.os.Bundle
+import android.provider.ContactsContract.Profile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.mindorks.bootcamp.instagram.R
+import com.mindorks.bootcamp.instagram.databinding.ActivityMainBinding
 import com.mindorks.bootcamp.instagram.di.component.ActivityComponent
 import com.mindorks.bootcamp.instagram.ui.base.BaseActivity
 import com.mindorks.bootcamp.instagram.ui.home.HomeFragment
 import com.mindorks.bootcamp.instagram.ui.photo.PhotoFragment
 import com.mindorks.bootcamp.instagram.ui.profile.ProfileFragment
-import kotlinx.android.synthetic.main.activity_main.*
+
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<MainViewModel>() {
@@ -30,7 +32,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
-        bottomNavigation.run {
+        ActivityMainBinding.bottomNavigation.run {
             itemIconTintList = null
             setOnNavigationItemSelectedListener {
                 when (it.itemId) {
@@ -68,7 +70,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         })
 
         mainSharedViewModel.homeRedirection.observe(this, Observer {
-            it.getIfNotHandled()?.run { bottomNavigation.selectedItemId = R.id.itemHome }
+            it.getIfNotHandled()?.run {activityMainBinding.bottomNavigaton.selectedItemId = R.id.itemHome }
         })
 
     }

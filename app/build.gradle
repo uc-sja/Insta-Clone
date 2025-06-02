@@ -2,10 +2,11 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
-
 
 apply plugin: 'kotlin-kapt'
+
+apply plugin: 'org.jetbrains.kotlin.plugin.parcelize' // ADD THIS LINE for @Parcelize
+
 
 android {
     // user the variables like compile_sdk_version to keep the dependencies same throughout the application
@@ -40,12 +41,26 @@ android {
             buildConfigField("String", "API_KEY", "\"HBNA19QVVAPP\"")
         }
     }
+    buildFeatures {
+        viewBinding = true // ADD THIS LINE to enable View Binding
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17 // For Java source files
+        targetCompatibility JavaVersion.VERSION_17 // For Java bytecode output
+    }
+
+    kotlinOptions {
+        jvmTarget = '17' // Make sure this matches Java's target
+    }
+
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'com.mindorks:paracamera:0.2.2'
+//    implementation 'com.mindorks:paracamera:0.2.2'
 
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
 
@@ -87,8 +102,7 @@ dependencies {
 
     // Image
     implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "@live.com"com.github.bumptech.glide:compiler:$glide_version"
-=
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
@@ -107,8 +121,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
 
     // Debugging
-    debugImplementation "com.amitshekhar.android:debug-db:$debug_db_version"
-
+    debugImplementation 'com.github.amitshekhariitbhu.Android-Debug-Database:debug-db:1.0.7'
     // Local Unit tests
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
